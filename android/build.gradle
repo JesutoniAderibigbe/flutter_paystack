@@ -7,7 +7,6 @@ buildscript {
         mavenCentral()
         google()
     }
-
     dependencies {
         classpath 'com.android.tools.build:gradle:7.4.0-rc02'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
@@ -27,16 +26,29 @@ apply plugin: 'kotlin-android'
 android {
     namespace 'co.paystack.flutterpaystack'
     compileSdkVersion 32
-
+    
     sourceSets {
         main.java.srcDirs += 'src/main/kotlin'
     }
+    
     defaultConfig {
         minSdkVersion 16
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         versionCode 21
         versionName "3.0.10"
     }
+    
+    // Add Java compatibility
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    
+    // Add Kotlin JVM target
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+    
     lintOptions {
         disable 'InvalidPackage'
     }
